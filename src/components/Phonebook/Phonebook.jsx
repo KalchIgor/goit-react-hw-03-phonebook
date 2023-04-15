@@ -18,9 +18,10 @@ export default class Phonebook extends Component {
       }
 
     componentDidMount() {
+    // берем данные из  localStorage
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
-
+    //если есть парсим и запивываем
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
     }
@@ -28,8 +29,10 @@ export default class Phonebook extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const nextContacts = this.state.contacts;
-    const prevContacts = prevState.contacts;
-
+      const prevContacts = prevState.contacts;
+      
+    //Если контакты изменились записуем их в localStorage
+      
     if (nextContacts !== prevContacts) {
       localStorage.setItem('contacts', JSON.stringify(nextContacts));
     }
